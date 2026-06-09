@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+
+  # ── C TCP chat server ──────────────────────────────────────────────────────
+  server:
+    build: ./server
+    restart: unless-stopped
+    # Port 8080 is internal only — only the gateway should talk to the server.
+    # Expose it if you want to connect with the CLI client for debugging:
+    # ports:
+    #   - "8080:8080"
+
+  # ── Python WebSocket gateway ───────────────────────────────────────────────
+  gateway:
+    build: ./gateway
+    restart: unless-stopped
+    ports:
+      - "8765:8765"
+    environment:
+      CHAT_SERVER_HOST: server   # Docker service name resolves automatically
+      CHAT_SERVER_PORT: "8080"
+      WS_PORT: "8765"
+    depends_on:
+      - server
+
+  # ── React frontend (served by nginx) ──────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Change this to your VPS IP or domain when deploying
+        VITE_WS_URL: "ws://localhost:8765"
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - gateway
