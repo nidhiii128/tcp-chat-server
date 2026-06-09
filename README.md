@@ -28,7 +28,7 @@ The React frontend is served by nginx and connects to the gateway.
 
 ---
 
-## Run locally (Docker — recommended)
+## Run locally (Docker)
 
 ```bash
 git clone https://github.com/<you>/tcp-chat-app.git
@@ -127,3 +127,9 @@ tcp-chat-app/
 ├── docker-compose.yml
 └── .gitignore
 ```
+
+## Project Demo
+
+<img width="1918" height="885" alt="image" src="https://github.com/user-attachments/assets/6e7d2493-3754-4d4b-ba54-c0513ef456fa" />
+
+<img width="1917" height="889" alt="image" src="https://github.com/user-attachments/assets/ffadae01-d404-4698-aa66-cb93ca57e3f1" />
