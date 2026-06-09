@@ -127,28 +127,3 @@ tcp-chat-app/
 ├── docker-compose.yml
 └── .gitignore
 ```
-
----
-
-## Git setup
-
-```bash
-cd tcp-chat-app
-git init
-git add .
-git commit -m "Initial commit: full-stack TCP chat (C + Python + React + Docker)"
-
-# Create repo on GitHub, then:
-git remote add origin https://github.com/<you>/tcp-chat-app.git
-git branch -M main
-git push -u origin main
-```
-
----
-
-## How to explain this in an interview
-
-- "The C server owns the networking layer — raw socket lifecycle, accept loop, thread-per-client, mutex-protected broadcast."
-- "Browsers can't speak raw TCP, so I wrote a Python asyncio gateway that translates WebSocket frames to TCP streams and back."
-- "The three services are containerized independently and orchestrated with Docker Compose — the server is not exposed externally, only the gateway is."
-- "Deployed to a Linux VPS by changing one env variable and running docker compose up."
